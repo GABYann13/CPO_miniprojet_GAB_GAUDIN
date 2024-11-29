@@ -26,7 +26,11 @@ public class Pion {
 
     @Override
     public String toString() {
-        return "Pion{" + "couleur=" + couleur + '}';
+        if (couleur != null && !couleur.isEmpty()) {
+            
+            return String.valueOf(couleur.charAt(0));
+        }
+        return ""; 
     }
     
     
