@@ -23,7 +23,7 @@ public class Combinaison {
        for(int i=0 ; i<taille ; i++){
            int NbrAleatoire = NbrRandom.nextInt(taille1);
         Random NbrRandom = new Random(); 
-        CombinaisonDuMaitre[i]= NbrAleatoire
+        CombinaisonDuMaitre[i]= NbrAleatoire;
        
     }
         
