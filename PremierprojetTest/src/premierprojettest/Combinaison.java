@@ -21,17 +21,28 @@ public class Combinaison {
        Character[] CombinaisonDuMaitre = new Character[taille];
        int taille1 = couleursDisponibles.size();
        for(int i=0 ; i<taille ; i++){
-           int NbrAleatoire = NbrRandom.nextInt(taille1);
-        Random NbrRandom = new Random(); 
-        CombinaisonDuMaitre[i]= NbrAleatoire
+           Random NbrRandom = new Random();
+           int NbrAleatoire = NbrRandom.nextInt(taille1); 
+        CombinaisonDuMaitre[i] = couleursDisponibles.get(NbrAleatoire);
        
     }
-        
-    
     return CombinaisonDuMaitre; 
     }
-    public comparer(Combinaison autre){
+    
+    public int comparer(Combinaison autre){
+        Character[] Tentative = new Character[taille];
+        Character[] Couleurs_rep = new Character[taille];
+        for (int i=0 ; i<taille ; i++){
+            if (Tentative[i]==CombinaisonDuMaitre[i]){
+                Couleur_rep[i]=blanc;
+            }
+            else{
+                Couleur_rep[i]=noir;
+            }
+        }
         
+
+     return int;   
     }
     toString(){
         
