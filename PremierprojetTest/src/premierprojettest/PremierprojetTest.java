@@ -18,12 +18,20 @@ public class PremierprojetTest {
         Pion pionBleu = new Pion("Bleu");
         Pion pionViolet = new Pion("Violet");
         Pion pionJaune = new Pion("Jaune");
+        Pion pionVert = new Pion("Vert");
+        Pion pionRose = new Pion("Rose");
+        Pion pionOrange = new Pion("Orange");
+        Pion pionMarron = new Pion("Marron");
 
         
         System.out.println("Pion Rouge : " + pionRouge);  
         System.out.println("Pion Bleu : " + pionBleu);    
         System.out.println("Pion Violet : " + pionViolet);
         System.out.println("Pion Jaune : " + pionJaune);
+        System.out.println("Pion Vert : " + pionVert);
+        System.out.println("Pion Rose : " + pionRose);
+        System.out.println("Pion Orange : " + pionOrange);
+        System.out.println("Pion Marron : " + pionMarron);
         
             
     }
