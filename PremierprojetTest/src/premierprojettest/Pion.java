@@ -10,23 +10,23 @@ package premierprojettest;
  * @author yann
  */
 public class Pion {
-    private String couleur;
+    private Character maCouleur;
     
-    public Pion(String couleur){
-        this.couleur = couleur;
+    public Pion(Character couleur){
+        this.maCouleur = couleur;
     } 
 
-    public String getCouleur() {
-        return couleur;
+    public Character getCouleur() {
+        return maCouleur;
     }
 
-    public void setCouleur(String couleur) {
-        this.couleur = couleur;
+    public void setCouleur(Character couleur) {
+        this.maCouleur = couleur;
     }
 
     @Override
     public String toString() {
-        return "Pion{" + "couleur=" + couleur + '}';
+        return "Pion{" + "couleur=" + maCouleur + '}';
     }
     
     

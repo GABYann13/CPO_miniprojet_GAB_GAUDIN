@@ -4,14 +4,14 @@
  */
 package premierprojettest;
 
-import java.util.ArrayList;
-import Combinaison.java;
+//import java.util.ArrayList;
+//import premierprojettest.Combinaison;
 
 /**
  *
  * @author kango
  */
-public class PlateauDeJeu {
+/*public class PlateauDeJeu {
     Combinaison CombinaisonDuMaitre;
     ArrayList <Combinaison> Tentatives; // Garde en memoir les differentes combinaisons du joueuer
     ArrayList <Character> UneCombinaison; // Creation d'une liste pour devenir la tentative du joueur 
@@ -68,4 +68,4 @@ public class PlateauDeJeu {
     
     
     
-}
+}*/

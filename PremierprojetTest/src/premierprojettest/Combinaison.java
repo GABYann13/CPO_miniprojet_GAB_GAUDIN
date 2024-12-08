@@ -11,12 +11,13 @@ import java.util.Random;
  * @author kango
  */
 public class Combinaison {
-    Pion[] element;
     int taille;
-    Pion [] combinaison = new Pion [4];
+    Pion [] maCombinaison1 = new Pion [4];
     public Combinaison(Pion[] elements){
-        
+    maCombinaison1=elements;    
     }
+    
+            
     public Character[] genererAleatoire(int taille, ArrayList<Character> couleursDisponibles) {
        Character[] CombinaisonDuMaitre = new Character[taille];
        int taille1 = couleursDisponibles.size();
@@ -29,22 +30,27 @@ public class Combinaison {
     return CombinaisonDuMaitre; 
     }
     
-    public int comparer(Combinaison autre){
+    public Character[] comparer(Combinaison autre, Character[]CombinaisonDuMaitre) {
         Character[] Tentative = new Character[taille];
-        Character[] Couleurs_rep = new Character[taille];
+        Character[] Couleurs_indice = new Character[taille];
         for (int i=0 ; i<taille ; i++){
             if (Tentative[i]==CombinaisonDuMaitre[i]){
-                Couleur_rep[i]=blanc;
+                Couleurs_indice[i]= 1;
             }
             else{
-                Couleur_rep[i]=noir;
+                Couleurs_indice[i]= 2;
             }
         }
         
 
-     return int;   
+     return Couleurs_indice;   
     }
-    toString(){
+
+    @Override
+    public String toString() {
+        return "Combinaison{" + "combinaison=" + maCombinaison1[0] + maCombinaison1[1] + maCombinaison1[2] + maCombinaison1[3] + '}';
+    }
+    
         
-    }
+    
 }
