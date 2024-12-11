@@ -4,7 +4,7 @@
  */
 package premierprojettest;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 //import premierprojettest.Combinaison;
 
 /**
@@ -14,13 +14,11 @@ import java.util.ArrayList;
 public class Partie {
     //ArrayList <Character> couleursDisponibles; //liste de toutes les couleures dispo
     //PlateauDeJeu plateau; //permet de gérer les tentatives de reponses
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
+    
+    
+    
+    
+    
+    
+
