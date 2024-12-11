@@ -19,27 +19,28 @@ public class PremierprojetTest {
      */
     public static void main(String[] args) {
         Pion pion1 = new Pion('R');
-        Pion pion2 = new Pion('J');
-        Pion pion3 = new Pion('V');
+        Pion pion2 = new Pion('Y');
+        Pion pion3 = new Pion('M');
         Pion pion4 = new Pion('O');
         Pion pion5 = new Pion('B');
-        Pion pion6 = new Pion('K');
-        Pion pion7 = new Pion('S');
-        Pion pion8 = new Pion('M');
+        Pion pion6 = new Pion('G');
+        Pion pion7 = new Pion('P');
+        Pion pion8 = new Pion('W');
         System.out.println( pion1.getCouleur());
         
-        /*System.out.println("Pion Rouge : " + pion1);  
-        System.out.println("Pion Bleu : " + pion5);    
-        System.out.println("Pion Violet : " + pion3);
-        System.out.println("Pion Jaune : " + pion2);
-        System.out.println("Pion Kaki : " + pion6);
-        System.out.println("Pion Saumon : " + pion7);
+        /*System.out.println("Pion Red : " + pion1);  
+        System.out.println("Pion Blue : " + pion5);    
+        System.out.println("Pion Magenta : " + pion3);
+        System.out.println("Pion Yellow : " + pion2);
+        System.out.println("Pion Green : " + pion6);
+        System.out.println("Pion Pink : " + pion7);
         System.out.println("Pion Orange : " + pion4);
-        System.out.println("Pion Marron : " + pion8);*/
+        System.out.println("Pion White : " + pion8);*/
         
         Pion [] tableauDePion = {pion1, pion2, pion3, pion4};
         Combinaison maCombinaison = new Combinaison(tableauDePion);
         System.out.println(maCombinaison.toString());
+        //System.out.println(CombinaisonDuMaitre.toString());
         
         
         
