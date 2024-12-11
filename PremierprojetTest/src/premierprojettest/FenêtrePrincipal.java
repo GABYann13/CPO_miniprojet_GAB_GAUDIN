@@ -139,10 +139,10 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
         );
         ChoixCouleursLayout.setVerticalGroup(
             ChoixCouleursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 110, Short.MAX_VALUE)
         );
 
-        getContentPane().add(ChoixCouleurs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 880, 350));
+        getContentPane().add(ChoixCouleurs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 880, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
