@@ -1,8 +1,6 @@
 package premierprojettest;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import javax.swing.JButton;
 
 /*
@@ -15,6 +13,9 @@ import javax.swing.JButton;
  * @author yann
  */
 public class Pion {
+    int x;
+    int y;
+          
     private String couleur;
     
     public Pion(String couleur){
@@ -38,7 +39,36 @@ public class Pion {
         return ""; 
     }
 
-    
+    public int getValeur(){
+       int Valeur;
+       if (x<110){
+         Valeur = 1;  
+       }
+       else if (x<220){
+         Valeur = 2;  
+       }
+       else if (x<330){
+         Valeur = 3;  
+       }
+       else if (x<440){
+         Valeur = 4;  
+       }
+       else if (x<550){
+         Valeur = 5;  
+       }
+       else if (x<660){
+         Valeur = 6;  
+       }
+       else if (x<770){
+         Valeur = 7;  
+       }
+       
+       else {  
+           Valeur = 8;
+       }
+        
+       return Valeur;
+    }
     
     
 }
