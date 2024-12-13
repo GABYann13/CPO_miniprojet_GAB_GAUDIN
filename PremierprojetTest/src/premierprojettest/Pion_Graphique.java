@@ -3,6 +3,7 @@ package premierprojettest;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import javax.swing.JButton;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,14 +14,14 @@ import java.awt.Graphics2D;
  *
  * @author yann
  */
-public class Pion_Graphique {
-    Pion pion_associe
+public class Pion_Graphique extends JButton{
+    Pion pion_associe;
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         Graphics2D g2d = (Graphics2D) g;
         Color couleur;
-        switch (Pion_associe.getValeur()){
+        switch (pion_associe.getValeur()){
             case 1 -> 
                 couleur = Color.RED;
             case 2 -> 
