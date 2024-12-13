@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package premierprojettest;
+import java.util.ArrayList;
 import premierprojettest.Combinaison;
 //import premierprojettest.PlateauDeJeu;
 import premierprojettest.Pion;
@@ -28,6 +29,17 @@ public class PremierprojetTest {
         Pion pion8 = new Pion('W');
         System.out.println( pion1.getCouleur());
         
+        ArrayList<Character> couleursDisponibles = new ArrayList<Character>();
+        couleursDisponibles.add('R');
+        couleursDisponibles.add('Y');
+        couleursDisponibles.add('M');
+        couleursDisponibles.add('O');
+        couleursDisponibles.add('B');
+        couleursDisponibles.add('G');
+        couleursDisponibles.add('P');
+        couleursDisponibles.add('W');
+        
+        
         /*System.out.println("Pion Red : " + pion1);  
         System.out.println("Pion Blue : " + pion5);    
         System.out.println("Pion Magenta : " + pion3);
@@ -40,7 +52,8 @@ public class PremierprojetTest {
         Pion [] tableauDePion = {pion1, pion2, pion3, pion4};
         Combinaison maCombinaison = new Combinaison(tableauDePion);
         System.out.println(maCombinaison.toString());
-        //System.out.println(CombinaisonDuMaitre.toString());
+        Combinaison CombinaisonDuMaitre = new Combinaison(tableauDePion);
+        System.out.println(CombinaisonDuMaitre);
         
         
         
