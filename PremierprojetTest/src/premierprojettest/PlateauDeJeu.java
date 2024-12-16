@@ -4,68 +4,63 @@
  */
 package premierprojettest;
 
-//import java.util.ArrayList;
-//import premierprojettest.Combinaison;
+import java.util.ArrayList;
+
 
 /**
  *
  * @author kango
  */
-/*public class PlateauDeJeu {
-    Combinaison CombinaisonDuMaitre;
-    ArrayList <Combinaison> Tentatives; // Garde en memoir les differentes combinaisons du joueuer
-    ArrayList <Character> UneCombinaison; // Creation d'une liste pour devenir la tentative du joueur 
-     ArrayList <String> reponses;
-     int nbToursMax;
-     int nbTentatives=0;
-     
-     int taille2 = combinaison.size(); // import de la classe Combinaison puis creation de la taille d'une combinaison
-     
-     //Creation d'une liste qui prends 4 couleures pour creer une tentative du joueur
-     
-     for (int i=0; i<taille2 ; i++ ){
-        
-        
-        
-    
-}
-     UneCombinaison.add();
-     
-     Tentatives.add(UneCombinaison);
+public class PlateauDeJeu {
+    Combinaison combinaisonDuMaitre;
+    ArrayList <Combinaison> tentatives; // Garde en memoir les differentes combinaisons du joueur
+    //ArrayList <Character> UneCombinaison; // Creation d'une liste pour devenir la tentative du joueur 
+    ArrayList <String> reponses;
+    int nbToursMax;
+    int nbTentatives=0;
 
-    public PlateauDeJeu(Combinaison CombinaisonDuMaitre, int nbToursMax) {
-        this.CombinaisonDuMaitre = CombinaisonDuMaitre;
+    // Constructeur
+    public PlateauDeJeu(Combinaison combinaisonDuMaitre, int nbToursMax) {
+        this.combinaisonDuMaitre = combinaisonDuMaitre;
         this.nbToursMax = nbToursMax;
+        tentatives = new ArrayList();
+        reponses = new ArrayList();
     }
     
-    public proposerCombinaison(Combinaison autre){
-        if ("bouton validé apuuyé"){
-        nbTentatives = nbTentatives+1;
+    //Ajoute une tentative et calcule les indices correspondants.
+    public void proposerCombinaison(Combinaison autre){
+        int[] laReponse = new int[2];   // reponse au format de retour de la methode Combinasion.comparer
+        String laReponseStr;            // reponse au format String
         
-        
-    }
+        tentatives.add(autre);
+        nbTentatives++;
+        laReponse=autre.comparer(autre, combinaisonDuMaitre);
+        laReponseStr="Noirs:"+Integer.toString(laReponse[0]) + " Blancs:"+Integer.toString(laReponse[1]); // conversion en string
+        reponses.add(laReponseStr);
     }
     
-    public afficherPlateau(){
-        
+    public void afficherPlateau(){
+        System.out.println("Tentatives : "+ tentatives.toString());
+        System.out.println("Reponses : "+ reponses.toString());
     }
     
-    public Victoire(){
-       if (CombinaisonDuMaitre==Tentatives){
+    public Boolean estVictoire(){
+        String derniereReponse = reponses.getLast();
+        if (derniereReponse.equals("Noirs:4 Blancs:0")){ //equals pour comparer 2 string
            System.out.println("Congratulation ! You win !");
-       }
- 
+           return true;
+        }
+        else {
+           System.out.println("Dommage, essaye encore");
+           return false;
+        }
     }
      
-    public Game_Over(){
+    public Boolean gameOver(){
         if (nbTentatives==nbToursMax){
             System.out.println("Game Over");
+            return true;
         }
-        
-    } 
-    
-    
-    
-    
-    
-}*/
+        else return false;
+    }
+}
