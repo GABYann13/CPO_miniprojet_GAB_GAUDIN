@@ -4,6 +4,7 @@
  */
 package premierprojettest;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 
@@ -16,14 +17,16 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
     /**
      * Creates new form FenêtrePrincipal
      */
+    Color[] palette = {Color.GRAY, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.MAGENTA, Color.WHITE, Color.PINK };
     public FenêtrePrincipal() {
+        
         initComponents();
         int nbLignes = 10;
         int nbColonnes = 4;
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         for (int i=0; i < nbLignes; i++) {
             for (int j=0; j < nbColonnes; j++ ) {
-                JButton bouton_cellule = new JButton(); // création d'un bouton
+                Pion_Graphique bouton_cellule = new Pion_Graphique(palette);  // création d'un bouton
                 PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }
         }
@@ -33,6 +36,7 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
         for (int i=0; i < nbtLignes; i++) {
             for (int j=0; j < nbtColonnes; j++ ) {
                 JButton bouton_cellule = new JButton(); // création d'un bouton
+                bouton_cellule.setBackground(palette[j+1]);
                 ChoixCouleurs.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }
         }
