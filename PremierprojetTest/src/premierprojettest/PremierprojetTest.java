@@ -27,22 +27,16 @@ public static void main(String[] args) {
         couleursDisponibles.add('M');
         couleursDisponibles.add('O');
         couleursDisponibles.add('B');
-        //couleursDisponibles.add('G');
-        //couleursDisponibles.add('P');
-        //couleursDisponibles.add('W');
+        couleursDisponibles.add('G');
+        couleursDisponibles.add('P');
+        couleursDisponibles.add('W');
                               
-        /*System.out.println("Pion Red : " + pion1);  
-        System.out.println("Pion Blue : " + pion5);    
-        System.out.println("Pion Magenta : " + pion3);
-        System.out.println("Pion Yellow : " + pion2);
-        System.out.println("Pion Green : " + pion6);
-        System.out.println("Pion Pink : " + pion7);
-        System.out.println("Pion Orange : " + pion4);
-        System.out.println("Pion White : " + pion8);*/
+        
         
         Character[] combinaisonDuMaitre = new Character[4];     // combi du maitre aléatoire
         int [] couleurs_indice = new int[2];                    // resultat des comparaisons
         
+        // Test Combinaison
         // creation de la combinaison du joueur (statique)
         Pion [] tableauDePion = {pion1, pion2, pion3, pion4};
         Combinaison maCombinaison = new Combinaison(tableauDePion);
@@ -60,6 +54,10 @@ public static void main(String[] args) {
         // Comparaison des combinaisons BYMO avec celle du maitre
         couleurs_indice = maCombinaison.comparer(newCombinaisonA, combinaisonDuMaitre);
         System.out.println("Nb pions Noirs : " + couleurs_indice[0] + "; Nb pions Blancs : " + couleurs_indice[1]);
+        
+        
+        
+        
         
         // Test plateau de jeu
         // Creation Plateau, combi secrete : OMYR
