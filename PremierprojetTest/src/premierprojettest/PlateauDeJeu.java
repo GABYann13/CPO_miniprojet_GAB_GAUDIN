@@ -13,8 +13,7 @@ import java.util.ArrayList;
  */
 public class PlateauDeJeu {
     Combinaison combinaisonDuMaitre;
-    ArrayList <Combinaison> tentatives; // Garde en memoir les differentes combinaisons du joueur
-    //ArrayList <Character> UneCombinaison; // Creation d'une liste pour devenir la tentative du joueur 
+    ArrayList <Combinaison> tentatives; // Garde en memoire les differentes combinaisons du joueur
     ArrayList <String> reponses;
     int nbToursMax;
     int nbTentatives=0;
