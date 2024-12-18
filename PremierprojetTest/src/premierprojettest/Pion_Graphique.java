@@ -1,9 +1,6 @@
 package premierprojettest;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import javax.swing.JButton;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,33 +11,38 @@ import javax.swing.JButton;
  *
  * @author yann
  */
-public class Pion_Graphique extends JButton{
-    Pion pion_associe;
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        Graphics2D g2d = (Graphics2D) g;
-        Color couleur;
-        switch (pion_associe.getValeur()){
-            case 1 -> 
-                couleur = Color.RED;
-            case 2 -> 
-                couleur = Color.BLUE;
-            case 3 -> 
-                couleur = Color.MAGENTA;
-            case 4 -> 
-                couleur = Color.YELLOW;
-            case 5 -> 
-                couleur = Color.GREEN;
-            case 6 -> 
-                couleur = Color.PINK;
-            case 7 -> 
-                couleur = Color.ORANGE;
-            case 8 -> 
-                couleur = Color.WHITE;
-            
-             
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Pion_Graphique extends JButton implements ActionListener {
+    private Color[] couleurs;
+    private int indexCouleur = 0;
+
+    public Pion_Graphique(Color[] couleurs) {
+        this.couleurs = couleurs;
+        setBackground(couleurs[indexCouleur]);
+        addActionListener(this);
     }
-    
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        indexCouleur = (indexCouleur + 1) % couleurs.length;
+        setBackground(couleurs[indexCouleur]);
+    }
+
+    public Color getCurrentColor() {
+        return couleurs[indexCouleur];
+    }
+
+    public void setColors(Color[] newColors) {
+        this.couleurs = newColors;
+        indexCouleur = 0;
+        setBackground(couleurs[indexCouleur]);
     }
 }
+    
+
+    
+
