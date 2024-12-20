@@ -25,7 +25,7 @@ public class Partie {
     
     public void lancerPartie(){
                 
-        // En attendant l'interaction graphique : Test plateau de jeu. A virer lors de l'integration au graphique
+       /* // En attendant l'interaction graphique : Test plateau de jeu. A virer lors de l'integration au graphique
         Pion pion1 = new Pion('R');
         Pion pion2 = new Pion('Y');
         Pion pion3 = new Pion('M');
@@ -64,6 +64,7 @@ public class Partie {
         plateau.afficherPlateau();
         plateau.estVictoire();
         plateau.gameOver();
+*/
     }
     
     public void afficherRegles(){
