@@ -60,5 +60,6 @@ public class PremierprojetTest {
         maPartie.lancerPartie();
         maPartie.afficherRegles();
         maPartie.terminerPartie();
+        
     }
 }
