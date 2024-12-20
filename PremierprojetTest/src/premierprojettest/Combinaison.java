@@ -12,12 +12,19 @@ import java.util.Random;
  * @author kango
  */
 public class Combinaison {
-    int taille=4;           // parametre par defaut
-    Pion [] maCombinaison = new Pion [taille];
+    int taille;           
+    Pion [] maCombinaison;
     
-    // Constructeur
+    // 1er Constructeur
     public Combinaison(Pion[] elements){
-        maCombinaison=elements;    
+        taille=elements.length;
+        maCombinaison = new Pion [taille];
+        maCombinaison=elements;     
+    } 
+    
+     // 2eme Constructeur qui cree une Combinaison vide, typiquement pour contenir un code aléatoire 
+    public Combinaison(){
+           // rien
     } 
     
     // Retourne la couleur d'un pion dont on indique la position en parametre
@@ -25,30 +32,31 @@ public class Combinaison {
         return maCombinaison[nPion].getCouleur();
     }
     
-    // génère une combinaison aléatoire de taille spécifiée, en sélec6onnant des couleurs aléatoires parmi couleursDisponibles
-    public Character[] genererAleatoire(int laTaille, ArrayList<Character> couleursDisponibles) {
-       Character[] combinaisonDuMaitre = new Character[laTaille];
+    // génère une combinaison aléatoire de taille spécifiée, en sélectionnant des couleurs aléatoires parmi couleursDisponibles
+    // A tester/revoir dans le cas ou cette methode est appelée sur une instance créé avec le 1er constructeur
+    public void genererAleatoire(int laTaille, ArrayList<Character> couleursDisponibles) {
+       taille=laTaille;
+       maCombinaison = new Pion [taille];
        int nombreCouleursDispo = couleursDisponibles.size();
        Random NbrRandom = new Random();     
        int NbrAleatoire;
-       
-       for(int i=0 ; i<laTaille ; i++){
-            NbrAleatoire = NbrRandom.nextInt(nombreCouleursDispo); 
-            combinaisonDuMaitre[i] = couleursDisponibles.get(NbrAleatoire);       
+              
+       for(int i=0 ; i<taille ; i++){
+           NbrAleatoire = NbrRandom.nextInt(nombreCouleursDispo); 
+           maCombinaison[i]=new Pion(couleursDisponibles.get(NbrAleatoire));       
         }
-    return combinaisonDuMaitre; 
     }
           
     // on va retourner un nombre de pions Noirs (les biens placés) et un nombre de pions Blancs (les mal placés)
-    public int[] comparer(Combinaison autre, Character[]combinaisonDuMaitre) {
+    public int[] comparer(Combinaison autre) {
         int pionNoir=0;                                 // Nb de bien placé
         int pionBlanc=0;                                // Nb de pions présents mais mal placés
-        Boolean isPionNoir=false, isPionBlanc=false;    // utilisation de flags (Mon père m'a expliqué cette ruse)
+        Boolean isPionNoir=false, isPionBlanc=false;    // utilisation de flags (mon père m'a expliqué cette ruse)
         int [] couleurs_indice = new int[2];            // resultat
         
         for (int i=0 ; i<taille ; i++){                 // j'itere sur la nouvelle combi 
             for (int j=0 ; j<taille ; j++){             // j'itere sur la combinaison maitre
-                if (autre.maCombinaison[i].getCouleur()==combinaisonDuMaitre[j]){ //compare la couleur de maCombinaison avec chaque couleurs de la combinaison du maitre
+                if (autre.maCombinaison[i].getCouleur()==maCombinaison[j].getCouleur()){      // je compare la tentative (autre.maCombinaison) à maCombinaison, qui est typiquement celle du maitre, 
                     if (i==j) isPionNoir=true;   // si la position est bonne
                     else isPionBlanc=true;       // sinon la couleur est bien presente mais pas à la bonne place
                 }
@@ -64,19 +72,15 @@ public class Combinaison {
         return couleurs_indice;   
     }
 
-    // methode comparer qui prend en parametre deux combinaisons et retourne un nombre de pions Noirs et un nombre de pions Blancs 
-    public int[] comparer(Combinaison autre, Combinaison combinaisonDuMaitre) {
-        Character[] combi= new Character[taille];
-        // je mets la combinaison dans un tableau de Character
-        for (int i=0; i<taille; i++){
-            combi[i]= combinaisonDuMaitre.getCouleur(i);
-        }
-        return comparer(autre, combi);
-    }
-    
-    // Attention la methode suivante est implémentée pour une taille =4
+    // Maintenant la methode toString peut retourner maCombinaison pour toutes les tailles demandées
     @Override
     public String toString() {
-        return "Combinaison{" + maCombinaison[0] + maCombinaison[1] + maCombinaison[2] + maCombinaison[3] + '}';
+        String maStr = new String();
+        maStr="Combinaison{";
+        for (int i=0; i<taille; i++ ){
+            maStr+=maCombinaison[i].getCouleur();       
+    }
+        maStr+="}";
+        return maStr;
     }
 }

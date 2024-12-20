@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class PlateauDeJeu {
     Combinaison combinaisonDuMaitre;
-    ArrayList <Combinaison> tentatives; // Garde en memoire les differentes combinaisons du joueur
+    ArrayList <Combinaison> tentatives; // Garde en memoir les differentes combinaisons du joueuer
     ArrayList <String> reponses;
     int nbToursMax;
     int nbTentatives=0;
@@ -25,7 +25,7 @@ public class PlateauDeJeu {
         tentatives = new ArrayList();
         reponses = new ArrayList();
     }
-    
+       
     //Ajoute une tentative et calcule les indices correspondants.
     public void proposerCombinaison(Combinaison autre){
         int[] laReponse = new int[2];   // reponse au format de retour de la methode Combinasion.comparer
@@ -33,7 +33,7 @@ public class PlateauDeJeu {
         
         tentatives.add(autre);
         nbTentatives++;
-        laReponse=autre.comparer(autre, combinaisonDuMaitre);
+        laReponse=combinaisonDuMaitre.comparer(autre);
         laReponseStr="Noirs:"+Integer.toString(laReponse[0]) + " Blancs:"+Integer.toString(laReponse[1]); // conversion en string
         reponses.add(laReponseStr);
     }
@@ -45,7 +45,7 @@ public class PlateauDeJeu {
     
     public Boolean estVictoire(){
         String derniereReponse = reponses.getLast();
-        if (derniereReponse.equals("Noirs:4 Blancs:0")){ //equals pour comparer 2 string
+        if (derniereReponse.equals("Noirs:4 Blancs:0")){  //equals permet de comparer deux string
            System.out.println("Congratulation ! You win !");
            return true;
         }
