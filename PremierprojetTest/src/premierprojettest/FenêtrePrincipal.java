@@ -18,6 +18,7 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
      * Creates new form FenêtrePrincipal
      */
     Color[] palette = {Color.GRAY, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.MAGENTA, Color.WHITE, Color.PINK };
+    Pion_Graphique[][] GrilleB = new Pion_Graphique[10][4];
     public FenêtrePrincipal() {
         
         initComponents();
@@ -25,8 +26,10 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
         int nbColonnes = 4;
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         for (int i=0; i < nbLignes; i++) {
+            
             for (int j=0; j < nbColonnes; j++ ) {
                 Pion_Graphique bouton_cellule = new Pion_Graphique(palette);  // création d'un bouton
+                GrilleB[i][j]= bouton_cellule;
                 PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }
         }
