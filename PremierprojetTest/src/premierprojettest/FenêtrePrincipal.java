@@ -6,6 +6,8 @@ package premierprojettest;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
@@ -19,18 +21,23 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
      */
     Color[] palette = {Color.GRAY, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.MAGENTA, Color.WHITE, Color.PINK };
     Pion_Graphique[][] GrilleB = new Pion_Graphique[10][4];
+    int ligneValide= 0;
+    Color[] Solution = new Color[4];
     public FenêtrePrincipal() {
         
         initComponents();
-        int nbLignes = 10;
+         int nbLignes = 10;
         int nbColonnes = 4;
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         for (int i=0; i < nbLignes; i++) {
-            
+           
             for (int j=0; j < nbColonnes; j++ ) {
-                Pion_Graphique bouton_cellule = new Pion_Graphique(palette);  // création d'un bouton
+                Pion_Graphique bouton_cellule = new Pion_Graphique(palette);
+                if (i!=0){
+                    bouton_cellule.setCliquable();
+                }
                 GrilleB[i][j]= bouton_cellule;
-                PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
+                PanneauGrille.add(bouton_cellule);
             }
         }
         int nbtLignes = 1;
@@ -43,8 +50,73 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
                 ChoixCouleurs.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }
         }
+        
+        OptionMaster.setLayout(new GridLayout(3, 1));
+        Solution[0] = Color.MAGENTA;
+        Solution[1] = Color.YELLOW;
+        Solution[2] = Color.BLUE;
+        Solution[3] = Color.WHITE;
+        JButton [][] aideSolu = new JButton[10][4];
+        aideSolution.setLayout(new GridLayout(10, 4));
+        for (int i =0;i<10;i++){
+            for (int j =0;j<4;j++){
+                JButton bouton = new JButton();
+                bouton.setBackground(Color.WHITE);
+                aideSolu[i][j]=bouton;
+                aideSolution.add(bouton);
+            }
+        }    
+        JButton jButton1 = new javax.swing.JButton();
+        JButton jButton2 = new javax.swing.JButton();
+        JButton jButton3 = new javax.swing.JButton();
+        jButton1.setText("Valider ");
+        jButton1.addActionListener(new ActionListener() {
+    @Override
+        public void actionPerformed(ActionEvent e) {
+            GrilleB[ligneValide][0].setCliquable();
+            GrilleB[ligneValide][1].setCliquable();
+            GrilleB[ligneValide][2].setCliquable();
+            GrilleB[ligneValide][3].setCliquable();
+            if(GrilleB[ligneValide][0].getCurrentColor()==Solution[0]){
+                aideSolu[ligneValide][0].setBackground(Color.BLACK);
+            }
+            else if(GrilleB[ligneValide][0].getCurrentColor()==Solution[1] || GrilleB[ligneValide][0].getCurrentColor()==Solution[2] || GrilleB[ligneValide][0].getCurrentColor()==Solution[3]){
+                aideSolu[ligneValide][0].setBackground(Color.GRAY);
+            }
+            if(GrilleB[ligneValide][1].getCurrentColor()==Solution[1]){
+                aideSolu[ligneValide][1].setBackground(Color.BLACK);
+            }
+            else if(GrilleB[ligneValide][1].getCurrentColor()==Solution[0] || GrilleB[ligneValide][1].getCurrentColor()==Solution[2] || GrilleB[ligneValide][1].getCurrentColor()==Solution[3]){
+                aideSolu[ligneValide][1].setBackground(Color.GRAY);
+            }
+            if(GrilleB[ligneValide][2].getCurrentColor()==Solution[2]){
+                aideSolu[ligneValide][2].setBackground(Color.BLACK);
+            }
+            else if(GrilleB[ligneValide][2].getCurrentColor()==Solution[0] || GrilleB[ligneValide][2].getCurrentColor()==Solution[1] || GrilleB[ligneValide][2].getCurrentColor()==Solution[3]){
+                aideSolu[ligneValide][2].setBackground(Color.GRAY);
+            }
+            if(GrilleB[ligneValide][3].getCurrentColor()==Solution[3]){
+                aideSolu[ligneValide][3].setBackground(Color.BLACK);
+            }
+            else if(GrilleB[ligneValide][3].getCurrentColor()==Solution[0] || GrilleB[ligneValide][3].getCurrentColor()==Solution[1] || GrilleB[ligneValide][3].getCurrentColor()==Solution[2]){
+                aideSolu[ligneValide][3].setBackground(Color.GRAY);
+            }
+            ligneValide++;
+            GrilleB[ligneValide][0].setCliquable();
+            GrilleB[ligneValide][1].setCliquable();
+            GrilleB[ligneValide][2].setCliquable();
+            GrilleB[ligneValide][3].setCliquable();
+        }
+    });
+    jButton2.setText("Règles");
+    jButton3.setText("Quitter");
+    OptionMaster.add(jButton1);
+    OptionMaster.add(jButton2);
+    OptionMaster.add(jButton3);
 
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,11 +128,8 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         PanneauGrille = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        OptionMaster = new javax.swing.JPanel();
+        aideSolution = new javax.swing.JPanel();
         ChoixCouleurs = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,55 +154,36 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
 
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 400, 500));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 0));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        OptionMaster.setBackground(new java.awt.Color(255, 255, 0));
+        OptionMaster.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("Valider ");
-
-        jButton2.setText("Règles");
-
-        jButton3.setText("Quitter");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(181, 181, 181)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap())
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 240, 500));
-
-        jPanel3.setBackground(new java.awt.Color(255, 0, 0));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout OptionMasterLayout = new javax.swing.GroupLayout(OptionMaster);
+        OptionMaster.setLayout(OptionMasterLayout);
+        OptionMasterLayout.setHorizontalGroup(
+            OptionMasterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 240, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        OptionMasterLayout.setVerticalGroup(
+            OptionMasterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 500));
+        getContentPane().add(OptionMaster, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 240, 500));
+
+        aideSolution.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout aideSolutionLayout = new javax.swing.GroupLayout(aideSolution);
+        aideSolution.setLayout(aideSolutionLayout);
+        aideSolutionLayout.setHorizontalGroup(
+            aideSolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+        aideSolutionLayout.setVerticalGroup(
+            aideSolutionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(aideSolution, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 500));
 
         ChoixCouleurs.setBackground(new java.awt.Color(204, 0, 255));
         ChoixCouleurs.setPreferredSize(new java.awt.Dimension(880, 350));
@@ -191,11 +241,8 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ChoixCouleurs;
+    private javax.swing.JPanel OptionMaster;
     private javax.swing.JPanel PanneauGrille;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel aideSolution;
     // End of variables declaration//GEN-END:variables
 }
