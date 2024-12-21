@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 public class Pion_Graphique extends JButton implements ActionListener {
     private Color[] couleurs;
     private int indexCouleur = 0;
+    private Boolean cliquable = true;
 
     public Pion_Graphique(Color[] couleurs) {
         this.couleurs = couleurs;
@@ -28,8 +29,11 @@ public class Pion_Graphique extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        indexCouleur = (indexCouleur + 1) % couleurs.length;
-        setBackground(couleurs[indexCouleur]);
+        if(cliquable){
+            indexCouleur = (indexCouleur + 1) % couleurs.length;
+            setBackground(couleurs[indexCouleur]);
+        }
+        
     }
 
     public Color getCurrentColor() {
@@ -40,6 +44,18 @@ public class Pion_Graphique extends JButton implements ActionListener {
         this.couleurs = newColors;
         indexCouleur = 0;
         setBackground(couleurs[indexCouleur]);
+    }
+    public void setCliquable(){
+        if(cliquable){
+            cliquable = false;
+           
+        }
+        else {
+            cliquable = true;
+        }
+    }
+    public Boolean getCliquable(){
+        return this.cliquable;
     }
 }
     
