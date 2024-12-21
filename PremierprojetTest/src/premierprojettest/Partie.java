@@ -4,13 +4,16 @@
  */
 package premierprojettest;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author kango
  */
 public class Partie {
+
     PlateauDeJeu plateau;
     String lesRegles = "Le jeu se joue a deux : un codificateur et un decodeur...";    
     
@@ -75,6 +78,8 @@ public class Partie {
          plateau.estVictoire();
          plateau.gameOver();
     }
+   
+
    
 }
     
