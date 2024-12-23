@@ -8,7 +8,10 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -23,10 +26,16 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
     Pion_Graphique[][] GrilleB = new Pion_Graphique[10][4];
     int ligneValide= 0;
     Color[] Solution = new Color[4];
-    public FenêtrePrincipal() {
+    PlateauDeJeu monPlateau;
+    Partie maPartie;
         
+    // Constructeur
+    public FenêtrePrincipal(Partie maPartie, PlateauDeJeu monPlateau) {
+        this.monPlateau=monPlateau;
+        this.maPartie=maPartie;
+        // Creation de la grille ou l'on propose les combinaisons
         initComponents();
-         int nbLignes = 10;
+        int nbLignes = 10;
         int nbColonnes = 4;
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         for (int i=0; i < nbLignes; i++) {
@@ -40,6 +49,7 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
                 PanneauGrille.add(bouton_cellule);
             }
         }
+        // Creation de la palette de bas d'ecran
         int nbtLignes = 1;
         int nbtColonnes = 8;
         ChoixCouleurs.setLayout(new GridLayout(nbtLignes, nbtColonnes));
@@ -51,69 +61,101 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
             }
         }
         
+        // Creation panneau de droite (boutons valider Regles quitter)
+        
         OptionMaster.setLayout(new GridLayout(3, 1));
-        Solution[0] = Color.MAGENTA;
+        
+        // def code secret ????
+        /*Solution[0] = Color.MAGENTA;
         Solution[1] = Color.YELLOW;
         Solution[2] = Color.BLUE;
         Solution[3] = Color.WHITE;
+        */
+        
+        // Creation grille des reponses, GRISE par defaut
         JButton [][] aideSolu = new JButton[10][4];
         aideSolution.setLayout(new GridLayout(10, 4));
         for (int i =0;i<10;i++){
             for (int j =0;j<4;j++){
                 JButton bouton = new JButton();
-                bouton.setBackground(Color.WHITE);
+                bouton.setBackground(Color.GRAY);
                 aideSolu[i][j]=bouton;
                 aideSolution.add(bouton);
             }
         }    
-        JButton jButton1 = new javax.swing.JButton();
-        JButton jButton2 = new javax.swing.JButton();
-        JButton jButton3 = new javax.swing.JButton();
+        
+        // Creation des boutons de controle, à droite du jeu
+        JButton jButton1 = new javax.swing.JButton(); // Bouton Valider
+        JButton jButton2 = new javax.swing.JButton(); // Regles 
+        JButton jButton3 = new javax.swing.JButton(); // Quitter 
+        
         jButton1.setText("Valider ");
+        
         jButton1.addActionListener(new ActionListener() {
-    @Override
-        public void actionPerformed(ActionEvent e) {
-            GrilleB[ligneValide][0].setCliquable();
-            GrilleB[ligneValide][1].setCliquable();
-            GrilleB[ligneValide][2].setCliquable();
-            GrilleB[ligneValide][3].setCliquable();
-            if(GrilleB[ligneValide][0].getCurrentColor()==Solution[0]){
-                aideSolu[ligneValide][0].setBackground(Color.BLACK);
-            }
-            else if(GrilleB[ligneValide][0].getCurrentColor()==Solution[1] || GrilleB[ligneValide][0].getCurrentColor()==Solution[2] || GrilleB[ligneValide][0].getCurrentColor()==Solution[3]){
-                aideSolu[ligneValide][0].setBackground(Color.GRAY);
-            }
-            if(GrilleB[ligneValide][1].getCurrentColor()==Solution[1]){
-                aideSolu[ligneValide][1].setBackground(Color.BLACK);
-            }
-            else if(GrilleB[ligneValide][1].getCurrentColor()==Solution[0] || GrilleB[ligneValide][1].getCurrentColor()==Solution[2] || GrilleB[ligneValide][1].getCurrentColor()==Solution[3]){
-                aideSolu[ligneValide][1].setBackground(Color.GRAY);
-            }
-            if(GrilleB[ligneValide][2].getCurrentColor()==Solution[2]){
-                aideSolu[ligneValide][2].setBackground(Color.BLACK);
-            }
-            else if(GrilleB[ligneValide][2].getCurrentColor()==Solution[0] || GrilleB[ligneValide][2].getCurrentColor()==Solution[1] || GrilleB[ligneValide][2].getCurrentColor()==Solution[3]){
-                aideSolu[ligneValide][2].setBackground(Color.GRAY);
-            }
-            if(GrilleB[ligneValide][3].getCurrentColor()==Solution[3]){
-                aideSolu[ligneValide][3].setBackground(Color.BLACK);
-            }
-            else if(GrilleB[ligneValide][3].getCurrentColor()==Solution[0] || GrilleB[ligneValide][3].getCurrentColor()==Solution[1] || GrilleB[ligneValide][3].getCurrentColor()==Solution[2]){
-                aideSolu[ligneValide][3].setBackground(Color.GRAY);
-            }
-            ligneValide++;
-            GrilleB[ligneValide][0].setCliquable();
-            GrilleB[ligneValide][1].setCliquable();
-            GrilleB[ligneValide][2].setCliquable();
-            GrilleB[ligneValide][3].setCliquable();
-        }
-    });
-    jButton2.setText("Règles");
-    jButton3.setText("Quitter");
-    OptionMaster.add(jButton1);
-    OptionMaster.add(jButton2);
-    OptionMaster.add(jButton3);
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                    GrilleB[ligneValide][0].setCliquable();
+                    GrilleB[ligneValide][1].setCliquable();
+                    GrilleB[ligneValide][2].setCliquable();
+                    GrilleB[ligneValide][3].setCliquable();
 
+                    // recuperer les couleurs choisies par le joueur, sous forme de Pion
+                    Pion pion1 = new Pion(GrilleB[ligneValide][0].getCharColor());
+                    Pion pion2 = new Pion(GrilleB[ligneValide][1].getCharColor());
+                    Pion pion3 = new Pion(GrilleB[ligneValide][2].getCharColor());
+                    Pion pion4 = new Pion(GrilleB[ligneValide][3].getCharColor());
+                    // Creation d'une Combinaison tentative à l'aide de ces pions
+                    Pion [] tableauDePion = {pion1, pion2, pion3, pion4};
+                    Combinaison tentative= new Combinaison(tableauDePion);
+                    // Comparer la tentative avec le code secret
+                    int[] laReponse = monPlateau.proposerCombinaison(tentative);
+                    monPlateau.afficherPlateau(); // Pour Debug
+                    // afficher les reponses
+                    int i,j;
+                    for (i=0; i<laReponse[0]; i++){
+                        aideSolu[ligneValide][i].setBackground(Color.BLACK);
+                    }
+                    for (j=i; j<i+laReponse[1]; j++){
+                        aideSolu[ligneValide][j].setBackground(Color.WHITE);
+                    }
+                    
+                    // Controler si Victoire ou Defaite atteinte
+                    if(monPlateau.estVictoire()){
+                        JOptionPane d1 = new JOptionPane();
+                        d1.showMessageDialog(jButton1, "GAGNE","Master Mind", JOptionPane.INFORMATION_MESSAGE);
+                    }else if (monPlateau.gameOver()){
+                        JOptionPane d2 = new JOptionPane();
+                        d2.showMessageDialog(jButton1, "PERDU","Master Mind", JOptionPane.INFORMATION_MESSAGE);
+                        SwingUtilities.getWindowAncestor(jButton1).dispose();
+                    }
+               
+                    ligneValide++;
+                    GrilleB[ligneValide][0].setCliquable();
+                    GrilleB[ligneValide][1].setCliquable();
+                    GrilleB[ligneValide][2].setCliquable();
+                    GrilleB[ligneValide][3].setCliquable();
+                }
+            });
+        jButton2.setText("Règles");
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                    maPartie.afficherRegles();  
+                    JOptionPane d = new JOptionPane();
+                    d.showMessageDialog(jButton2, "Le Mastermind est un jeu de société pour deux \n joueurs : un des joueurs (le codemaker) invente une \n combinaison secrète composée de 4 pions de \n couleurs et son adversaire (le codebreaker)\n doit la trouver par déductions successives,\n i.e. déterminer la couleur et la position exacte de \n chaque pion du code en 12 coups maximum.","Master Mind", JOptionPane.INFORMATION_MESSAGE);
+                }});
+        
+        jButton3.setText("Quitter");
+        jButton3.addActionListener(new ActionListener() {
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                    // fermer la frame 
+                    SwingUtilities.getWindowAncestor(jButton3).dispose();
+                }});
+        
+        OptionMaster.add(jButton1);
+        OptionMaster.add(jButton2);
+        OptionMaster.add(jButton3);
     }
 
 
@@ -208,6 +250,21 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        ArrayList<Character> couleursDisponibles = new ArrayList<Character>();
+        couleursDisponibles.add('R');
+        couleursDisponibles.add('Y');
+        couleursDisponibles.add('M');
+        couleursDisponibles.add('O');
+        couleursDisponibles.add('B');
+        couleursDisponibles.add('G');
+        couleursDisponibles.add('P');
+        couleursDisponibles.add('W');
+
+        Partie maPartie;
+        PlateauDeJeu monPlateau;
+        maPartie = new Partie(4,6,couleursDisponibles);
+        monPlateau=maPartie.getPlateau();
+               
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -234,10 +291,11 @@ public class FenêtrePrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FenêtrePrincipal().setVisible(true);
+                new FenêtrePrincipal(maPartie, monPlateau).setVisible(true);
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ChoixCouleurs;

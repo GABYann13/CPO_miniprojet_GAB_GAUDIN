@@ -17,7 +17,7 @@ public class Partie {
     PlateauDeJeu plateau;
     String lesRegles = "Le jeu se joue a deux : un codificateur et un decodeur...";    
     
-    // Constructeur
+    // Constructeur, génére une combinaison aléatoire maitre
     public Partie(int tailleCombinaison, int nbToursMax, ArrayList<Character> couleursDisponibles){
         Combinaison combinaisonDuMaitre=new Combinaison();
         combinaisonDuMaitre.genererAleatoire(tailleCombinaison, couleursDisponibles);
@@ -26,8 +26,14 @@ public class Partie {
         System.out.println("combi secrete du Plateau : " + combinaisonDuMaitre.toString());
     }
     
+    public PlateauDeJeu getPlateau(){
+        return plateau;
+    }
+    
     public void lancerPartie(){
-                
+              
+       
+        
        /* // En attendant l'interaction graphique : Test plateau de jeu. A virer lors de l'integration au graphique
         Pion pion1 = new Pion('R');
         Pion pion2 = new Pion('Y');

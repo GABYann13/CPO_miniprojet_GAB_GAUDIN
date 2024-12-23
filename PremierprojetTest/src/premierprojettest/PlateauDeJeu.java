@@ -27,7 +27,7 @@ public class PlateauDeJeu {
     }
        
     //Ajoute une tentative et calcule les indices correspondants.
-    public void proposerCombinaison(Combinaison autre){
+    public int[] proposerCombinaison(Combinaison autre){
         int[] laReponse = new int[2];   // reponse au format de retour de la methode Combinasion.comparer
         String laReponseStr;            // reponse au format String
         
@@ -36,6 +36,7 @@ public class PlateauDeJeu {
         laReponse=combinaisonDuMaitre.comparer(autre);
         laReponseStr="Noirs:"+Integer.toString(laReponse[0]) + " Blancs:"+Integer.toString(laReponse[1]); // conversion en string
         reponses.add(laReponseStr);
+        return laReponse;
     }
     
     public void afficherPlateau(){

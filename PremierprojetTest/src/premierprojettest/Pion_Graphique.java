@@ -45,6 +45,33 @@ public class Pion_Graphique extends JButton implements ActionListener {
         indexCouleur = 0;
         setBackground(couleurs[indexCouleur]);
     }
+    
+    // renvoie le charactere correspondat à la couleur
+    public Character getCharColor(){
+        Character resultat = 'A';
+        switch (indexCouleur) {
+            case 0:  resultat = 'A';
+                     break;
+            case 1:  resultat = 'R';
+                     break;
+            case 2:  resultat = 'B';
+                     break;
+            case 3:  resultat = 'G';
+                     break;
+            case 4:  resultat = 'Y';
+                     break;
+            case 5:  resultat = 'O';
+                     break;
+            case 6:  resultat = 'M';
+                     break;
+            case 7:  resultat = 'W';
+                     break;   
+            case 8:  resultat = 'P';
+                     break;
+        }
+        return resultat;
+    }
+    
     public void setCliquable(){
         if(cliquable){
             cliquable = false;

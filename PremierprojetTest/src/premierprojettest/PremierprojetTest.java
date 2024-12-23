@@ -12,7 +12,10 @@ import java.util.ArrayList;
  */
 public class PremierprojetTest {
 
-   public static void main(String[] args) {
+   public static void main(String[] args) {    
+      
+        
+        /*
         Pion pion1 = new Pion('R');
         Pion pion2 = new Pion('Y');
         Pion pion3 = new Pion('M');
@@ -21,18 +24,9 @@ public class PremierprojetTest {
         Pion pion6 = new Pion('G');
         Pion pion7 = new Pion('P');
         Pion pion8 = new Pion('W');
-              
-        ArrayList<Character> couleursDisponibles = new ArrayList<Character>();
-        couleursDisponibles.add('R');
-        couleursDisponibles.add('Y');
-        couleursDisponibles.add('M');
-        couleursDisponibles.add('O');
-        couleursDisponibles.add('B');
-        couleursDisponibles.add('G');
-        couleursDisponibles.add('P');
-        couleursDisponibles.add('W');
-
-        
+       */
+         
+       /*
         int [] couleurs_indice = new int[2];                    // resultat des comparaisons
         
         // TEST de la creation de la combinaison du joueur (statique)
@@ -60,6 +54,6 @@ public class PremierprojetTest {
         maPartie.lancerPartie();
         maPartie.afficherRegles();
         maPartie.terminerPartie();
-        
+        */
     }
 }
